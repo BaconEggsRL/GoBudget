@@ -26,12 +26,12 @@ Hit "Run active sources" to generate table and plot views. Click "show table" or
 
 Click "edit rules" to view the rules graph. Here you can automatically categorize transactions using configurable graph nodes.
 
-Click "Add Node..." or right click -> Add Node.
-Choose your desired node type (Output, Condition, Logic Gate)
-Connect nodes by dragging and dropping from the input/output slots.
-Use the Debug panel to run rules against a test transaction. Output nodes with higher priority will be processed first (100 being the highest.)
-Use the Edit Categories menu to create your own custom categories. This is where you can assign a budget amount for each category.
-See GitHub for more examples / information.
+* Click "Add Node..." or right click -> Add Node.
+* Choose your desired node type (Output, Condition, Logic Gate)
+* Connect nodes by dragging and dropping from the input/output slots.
+* Use the Debug panel to run rules against a test transaction. Output nodes with higher priority will be processed first (100 being the highest.)
+* Use the Edit Categories menu to create your own custom categories. This is where you can assign a budget amount for each category.
+
 Once you are satisfied with your transaction rules, hit "Save" to store them in memory. (Save data will be loaded next time you open the program.)
 
 Click "edit rules" again to return to the main menu. Now hit "Run active sources" to process your new rules on the transaction data. If you return to the table or plot view, you should see the changes reflected in the Category and Subcategory columns.
