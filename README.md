@@ -59,5 +59,6 @@ Create rules using graph nodes to categorize transactions according to your need
 
 ### Budget Plot  
 See progress towards your budget (red = over budget, green = under budget.)  
+The round markers have hover tooltips for each amount.  
 ![Alt text](_screenshots/budget_plot.png?raw=true "Budget Plot")  
 
