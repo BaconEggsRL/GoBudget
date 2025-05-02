@@ -24,7 +24,7 @@ https://github.com/Iaknihs/tutorials/tree/master/Godot_Line_Chart)
 ## Screenshots:  
   
 ### Main Menu  
-Add, edit, or delete data sources. Hit "Run active sources" to regenerate transaction data.
+Add, edit, or delete data sources. Hit "Run active sources" to regenerate transaction data and plots.
 ![Alt text](_screenshots/main_menu.png?raw=true "Main Menu")  
 
 ### Rules Graph  
