@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3tmptkgjxwlx"]
+
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="1_tathw"]
+[ext_resource type="Texture2D" uid="uid://e24syhcal4ce" path="res://art/exit.png" id="2_b6kvm"]
+[ext_resource type="Script" uid="uid://ckcrnk7orqt76" path="res://scenes/rules/add_node_popup_panel.gd" id="2_kqtju"]
+
+[node name="add_node_popup_panel" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -106.0
+offset_right = 200.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tathw")
+script = ExtResource("2_kqtju")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HelpText" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_tathw")
+text = "Select a node type:"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="output_node" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Output"
+
+[node name="Condition" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="conditional_node" type="Button" parent="MarginContainer/VBoxContainer/Condition"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Condition (Substring)"
+
+[node name="amount_node" type="Button" parent="MarginContainer/VBoxContainer/Condition"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Condition (Amount)"
+
+[node name="Logic" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="and_node" type="Button" parent="MarginContainer/VBoxContainer/Logic"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Logic (AND)"
+
+[node name="or_node" type="Button" parent="MarginContainer/VBoxContainer/Logic"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Logic (OR)"
+
+[node name="Toolbar" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="Title" type="Label" parent="Toolbar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Add Node"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Toolbar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+action_mode = 0
+icon = ExtResource("2_b6kvm")
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/output_node" to="." method="_on_output_node_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Condition/conditional_node" to="." method="_on_conditional_node_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Condition/amount_node" to="." method="_on_amount_node_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Logic/and_node" to="." method="_on_and_node_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Logic/or_node" to="." method="_on_or_node_pressed"]
+[connection signal="pressed" from="Toolbar/Close" to="." method="_on_close_pressed"]

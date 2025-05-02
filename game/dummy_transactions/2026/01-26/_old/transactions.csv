@@ -1,0 +1,24 @@
+DateObj,Date,Year,Month,Description,Amount,SourceCategory,Source,Category,Subcategory,AmountType
+2024-02-01,02/01/2024,2024,2 - February,Indfor INCOME INDO REMI08011,1000,Paycheck,B1,Misc,,Income
+2024-02-01,02/01/2024,2024,2 - February,INDO GIBL Indiaforensic STL08011,1000,Paycheck,B1,Misc,,Income
+2024-02-05,02/05/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-200,Other,B1,Insurance,,Expense
+2024-02-08,02/08/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-8000,Other,B1,Misc,,Expense
+2024-02-15,02/15/2024,2024,2 - February,BBPS DT 09012019,-10000,Other,B1,Housing,,Expense
+2024-02-16,02/16/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-200,Other,B1,Subscriptions,,Expense
+2024-02-01,02/01/2024,2024,2 - February,ICA 17825 Indiaforensic MC DOM 0,-6000,Merchandise,B2,Insurance,,Expense
+2024-02-02,02/02/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-7000,Merchandise,B2,Food,Supermarkets,Expense
+2024-02-02,02/02/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-400,Merchandise,B2,Housing,,Expense
+2024-02-02,02/02/2024,2024,2 - February,Indiaforensic VISA ACQ DOM090119,-2000,Restaurants,B2,Misc,,Expense
+2024-02-03,02/03/2024,2024,2 - February,Indiaforensic RUPAY POS ACQ09011,-9000,Merchandise,B2,Housing,,Expense
+2024-02-04,02/04/2024,2024,2 - February,Indiaforensic RUPAY POS C2 ACQ09,-400,Merchandise,B2,Misc,,Expense
+2024-02-04,02/04/2024,2024,2 - February,Indiaforensic VISA ACQ INT 05011,-5000,Merchandise,B2,Housing,,Expense
+2024-02-05,02/05/2024,2024,2 - February,Indiaforensic VISA ACQ INT 06011,-8700,Gasoline,B2,Misc,,Expense
+2024-02-05,02/05/2024,2024,2 - February,Indiaforensic VISA ACQ INT 07011,-300,Supermarkets,B2,Food,Restaurants,Expense
+2024-02-06,02/06/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-2000,Services,B2,Misc,,Expense
+2024-02-08,02/08/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-1000,Merchandise,B2,Food,Supermarkets,Expense
+2024-02-08,02/08/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-9000,Services,B2,Transportation,,Expense
+2024-02-09,02/09/2024,2024,2 - February,FDRL/INTERNAL FUND TRANSFE,-5500,Merchandise,B2,Misc,,Expense
+2024-02-11,02/11/2024,2024,2 - February,Indiaforensic RUP SETT 090119,-300,Supermarkets,B2,Subscriptions,,Expense
+2024-02-13,02/13/2024,2024,2 - February,Indiaforensic RUP SETT 090119,-7000,Merchandise,B2,Transportation,,Expense
+2024-02-13,02/13/2024,2024,2 - February,Indiaforensic RUP STL INTC090119,-8000,Merchandise,B2,Misc,,Expense
+2024-02-13,02/13/2024,2024,2 - February,Indiaforensic RUP STL INTC090119,-500,Services,B2,Transportation,,Expense

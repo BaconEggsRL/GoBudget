@@ -1,0 +1,76 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://cm0ivxkns6mrq"]
+
+[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_po760"]
+default_input_values = [0, 0.49, 1, 1.925, 2, 1e-05, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+
+[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_5xdy8"]
+default_input_values = [0, 0.49, 1, 1.925, 2, 1e-05, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void fragment() {
+	vec3 n_out2p0;
+// If:2
+	float n_in2p0 = 0.49000;
+	float n_in2p1 = 1.92500;
+	float n_in2p2 = 0.00001;
+	vec3 n_in2p3 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in2p4 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in2p5 = vec3(0.00000, 0.00000, 0.00000);
+	if(abs(n_in2p0 - n_in2p1) < n_in2p2)
+	{
+		n_out2p0 = n_in2p3;
+	}
+	else if(n_in2p0 < n_in2p1)
+	{
+		n_out2p0 = n_in2p5;
+	}
+	else
+	{
+		n_out2p0 = n_in2p4;
+	}
+
+
+	vec3 n_out3p0;
+// If:3
+	float n_in3p0 = 0.49000;
+	float n_in3p1 = 1.92500;
+	float n_in3p2 = 0.00001;
+	vec3 n_in3p3 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in3p4 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in3p5 = vec3(0.00000, 0.00000, 0.00000);
+	if(abs(n_in3p0 - n_in3p1) < n_in3p2)
+	{
+		n_out3p0 = n_in3p3;
+	}
+	else if(n_in3p0 < n_in3p1)
+	{
+		n_out3p0 = n_in3p5;
+	}
+	else
+	{
+		n_out3p0 = n_in3p4;
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out2p0;
+	NORMAL_MAP = n_out3p0;
+	LIGHT_VERTEX = n_out3p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(840, 120)
+nodes/fragment/2/node = SubResource("VisualShaderNodeIf_po760")
+nodes/fragment/2/position = Vector2(520, 200)
+nodes/fragment/3/node = SubResource("VisualShaderNodeIf_5xdy8")
+nodes/fragment/3/position = Vector2(580, 340)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 5, 3, 0, 0, 3)

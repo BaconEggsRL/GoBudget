@@ -1,0 +1,402 @@
+[gd_scene load_steps=14 format=3 uid="uid://cd0r55o1cvmql"]
+
+[ext_resource type="Shader" uid="uid://cm0ivxkns6mrq" path="res://scenes/main.tres" id="1_choun"]
+[ext_resource type="Script" uid="uid://4iku78jl6u12" path="res://scenes/main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://p87vvg5ru837" path="res://addons/dynamic_table/dynamic_table.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dlwq4kmdb3bhs" path="res://addons/easy_charts/control_charts/chart.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://8jgk0m4schvj" path="res://scenes/rules/save_popup_panel.tscn" id="3_tbgi4"]
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://yumviucp3kpq" path="res://scenes/rules/right_click_popup.tscn" id="4_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://d3tmptkgjxwlx" path="res://scenes/rules/add_node_popup_panel.tscn" id="5_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://dwe7gejw6x8ko" path="res://art/add.png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://c47ei138dloso" path="res://art/view.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://bqebvcstijy15" path="res://art/edit.png" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://scpo0eg7473x" path="res://art/delete.png" id="9_85g3d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
+shader = ExtResource("1_choun")
+
+[node name="main" type="Control" node_paths=PackedStringArray("rules_container", "rules_graph", "graph_options", "result_label", "save_popup", "add_node_popup", "right_click_popup", "table_container", "plot_container", "dynamic_table", "chart", "selected_folder_label", "month_option_btn", "year_option_btn", "load_data", "show_table", "show_plot")]
+material = SubResource("ShaderMaterial_ya4ey")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+rules_container = NodePath("UI_Controls/visualization_container/rules_container")
+rules_graph = NodePath("UI_Controls/visualization_container/rules_container/graph/GraphEdit")
+graph_options = NodePath("UI_Controls/visualization_container/rules_container/graph/graph_options")
+result_label = NodePath("UI_Controls/visualization_container/rules_container/results/MarginContainer/HBoxContainer/result_label")
+save_popup = NodePath("UI_Controls/visualization_container/rules_container/SavePopupPanel")
+add_node_popup = NodePath("UI_Controls/visualization_container/rules_container/AddNodePopup")
+right_click_popup = NodePath("UI_Controls/visualization_container/rules_container/RightClickPopup")
+table_container = NodePath("UI_Controls/visualization_container/table_container")
+plot_container = NodePath("UI_Controls/visualization_container/plot_container")
+dynamic_table = NodePath("UI_Controls/visualization_container/table_container/DynamicTable")
+chart = NodePath("UI_Controls/visualization_container/plot_container/ChartBox/Chart")
+selected_folder_label = NodePath("UI_Controls/Toolbar/selected_folder_label")
+month_option_btn = NodePath("UI_Controls/Toolbar/month_options/month_btn")
+year_option_btn = NodePath("UI_Controls/Toolbar/year_options/year_btn")
+load_data = NodePath("UI_Controls/Toolbar/data_options/load_data")
+show_table = NodePath("UI_Controls/Toolbar/data_options/show_table")
+show_plot = NodePath("UI_Controls/Toolbar/data_options/show_plot")
+
+[node name="UI_Controls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Toolbar" type="HBoxContainer" parent="UI_Controls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="edit_rules" type="Button" parent="UI_Controls/Toolbar"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "edit rules"
+
+[node name="select_folder" type="Button" parent="UI_Controls/Toolbar"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "select folder"
+
+[node name="selected_folder_label" type="LineEdit" parent="UI_Controls/Toolbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_jyhfs")
+placeholder_text = "<Select a transaction data folder>"
+
+[node name="year_options" type="HBoxContainer" parent="UI_Controls/Toolbar"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_jyhfs")
+
+[node name="year_label" type="Label" parent="UI_Controls/Toolbar/year_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "year"
+horizontal_alignment = 2
+
+[node name="year_btn" type="OptionButton" parent="UI_Controls/Toolbar/year_options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_jyhfs")
+
+[node name="year_btns" type="VBoxContainer" parent="UI_Controls/Toolbar/year_options"]
+visible = false
+layout_mode = 2
+
+[node name="add_year" type="Button" parent="UI_Controls/Toolbar/year_options/year_btns"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+"
+
+[node name="current_year" type="Button" parent="UI_Controls/Toolbar/year_options/year_btns"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "reset"
+
+[node name="subtract_year" type="Button" parent="UI_Controls/Toolbar/year_options/year_btns"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "-"
+
+[node name="month_options" type="HBoxContainer" parent="UI_Controls/Toolbar"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_jyhfs")
+
+[node name="month_label" type="Label" parent="UI_Controls/Toolbar/month_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "month"
+horizontal_alignment = 2
+
+[node name="month_btn" type="OptionButton" parent="UI_Controls/Toolbar/month_options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_jyhfs")
+
+[node name="month_btns" type="VBoxContainer" parent="UI_Controls/Toolbar/month_options"]
+visible = false
+layout_mode = 2
+
+[node name="add_month" type="Button" parent="UI_Controls/Toolbar/month_options/month_btns"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+"
+
+[node name="current_month" type="Button" parent="UI_Controls/Toolbar/month_options/month_btns"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "reset"
+
+[node name="subtract_month" type="Button" parent="UI_Controls/Toolbar/month_options/month_btns"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "-"
+
+[node name="data_options" type="HBoxContainer" parent="UI_Controls/Toolbar"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="load_data" type="Button" parent="UI_Controls/Toolbar/data_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+disabled = true
+text = "load data"
+
+[node name="show_table" type="Button" parent="UI_Controls/Toolbar/data_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+disabled = true
+text = "show table"
+
+[node name="show_plot" type="Button" parent="UI_Controls/Toolbar/data_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+disabled = true
+text = "show plot"
+
+[node name="clear_data" type="Button" parent="UI_Controls/Toolbar/data_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "clear data"
+
+[node name="visualization_container" type="Control" parent="UI_Controls"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="rules_container" type="Control" parent="UI_Controls/visualization_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="graph" type="VBoxContainer" parent="UI_Controls/visualization_container/rules_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="graph_options" type="HBoxContainer" parent="UI_Controls/visualization_container/rules_container/graph"]
+layout_mode = 2
+
+[node name="add_node" type="Button" parent="UI_Controls/visualization_container/rules_container/graph/graph_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "Add Node..."
+
+[node name="get_result" type="Button" parent="UI_Controls/visualization_container/rules_container/graph/graph_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+disabled = true
+text = "Parse Result"
+
+[node name="save_graph" type="Button" parent="UI_Controls/visualization_container/rules_container/graph/graph_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "Save"
+
+[node name="load_graph" type="Button" parent="UI_Controls/visualization_container/rules_container/graph/graph_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "Load"
+
+[node name="clear_graph" type="Button" parent="UI_Controls/visualization_container/rules_container/graph/graph_options"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "Clear"
+
+[node name="GraphEdit" type="GraphEdit" parent="UI_Controls/visualization_container/rules_container/graph"]
+layout_mode = 2
+size_flags_vertical = 3
+snapping_enabled = false
+right_disconnects = true
+show_zoom_label = true
+
+[node name="results" type="PanelContainer" parent="UI_Controls/visualization_container/rules_container"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_Controls/visualization_container/rules_container/results"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_Controls/visualization_container/rules_container/results/MarginContainer"]
+layout_mode = 2
+
+[node name="result_label" type="Label" parent="UI_Controls/visualization_container/rules_container/results/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "result: ''"
+horizontal_alignment = 1
+
+[node name="SavePopupPanel" parent="UI_Controls/visualization_container/rules_container" instance=ExtResource("3_tbgi4")]
+visible = false
+layout_mode = 1
+offset_top = -125.0
+offset_bottom = 87.0
+
+[node name="AddNodePopup" parent="UI_Controls/visualization_container/rules_container" instance=ExtResource("5_eb6dy")]
+visible = false
+layout_mode = 1
+
+[node name="RightClickPopup" parent="UI_Controls/visualization_container/rules_container" node_paths=PackedStringArray("rules_graph") instance=ExtResource("4_ya4ey")]
+visible = false
+unfocusable = false
+rules_graph = NodePath("../graph/GraphEdit")
+
+[node name="table_container" type="Control" parent="UI_Controls/visualization_container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DynamicTable" type="Control" parent="UI_Controls/visualization_container/table_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_0xm2m")
+header_color = Color(0.12549, 0.12549, 0.12549, 1)
+grid_color = Color(0.419608, 0.431373, 0.45098, 1)
+selected_back_color = Color(0.0901961, 0.227451, 0.337255, 1)
+row_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+alternate_row_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+metadata/_custom_type_script = "uid://p87vvg5ru837"
+
+[node name="plot_container" type="Control" parent="UI_Controls/visualization_container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChartBox" type="VBoxContainer" parent="UI_Controls/visualization_container/plot_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Chart" parent="UI_Controls/visualization_container/plot_container/ChartBox" instance=ExtResource("3_h2yge")]
+layout_mode = 2
+
+[node name="Data_Sources" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -36.0
+offset_right = 58.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Instructions" type="Label" parent="Data_Sources"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "Select a data source:"
+
+[node name="add_data" type="Button" parent="Data_Sources"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "Add new data source"
+icon = ExtResource("6_tefeu")
+alignment = 0
+
+[node name="sources" type="VBoxContainer" parent="Data_Sources"]
+layout_mode = 2
+
+[node name="source_1" type="HBoxContainer" parent="Data_Sources/sources"]
+layout_mode = 2
+
+[node name="source_name" type="Label" parent="Data_Sources/sources/source_1"]
+layout_mode = 2
+theme = ExtResource("4_jyhfs")
+text = "<Data Source Name>"
+horizontal_alignment = 1
+
+[node name="view_data" type="Button" parent="Data_Sources/sources/source_1"]
+layout_mode = 2
+tooltip_text = "Show Raw CSV and Transaction CSV data"
+theme = ExtResource("4_jyhfs")
+text = "View data source"
+icon = ExtResource("7_o6xl0")
+alignment = 0
+
+[node name="edit_data" type="Button" parent="Data_Sources/sources/source_1"]
+layout_mode = 2
+tooltip_text = "Change name, column mapping, or upload new data"
+theme = ExtResource("4_jyhfs")
+text = "Edit data source"
+icon = ExtResource("8_tipki")
+alignment = 0
+
+[node name="delete_data" type="Button" parent="Data_Sources/sources/source_1"]
+layout_mode = 2
+tooltip_text = "Delete this data source and all associated rules"
+theme = ExtResource("4_jyhfs")
+text = "Delete data source"
+icon = ExtResource("9_85g3d")
+alignment = 0
+
+[connection signal="pressed" from="UI_Controls/Toolbar/edit_rules" to="." method="_on_edit_rules_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/select_folder" to="." method="_on_select_folder_pressed"]
+[connection signal="item_selected" from="UI_Controls/Toolbar/year_options/year_btn" to="." method="_on_year_btn_item_selected"]
+[connection signal="pressed" from="UI_Controls/Toolbar/year_options/year_btns/add_year" to="." method="_on_add_year_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/year_options/year_btns/current_year" to="." method="_on_current_year_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/year_options/year_btns/subtract_year" to="." method="_on_subtract_year_pressed"]
+[connection signal="item_selected" from="UI_Controls/Toolbar/month_options/month_btn" to="." method="_on_month_btn_item_selected"]
+[connection signal="pressed" from="UI_Controls/Toolbar/month_options/month_btns/add_month" to="." method="_on_add_month_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/month_options/month_btns/current_month" to="." method="_on_current_month_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/month_options/month_btns/subtract_month" to="." method="_on_subtract_month_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/data_options/load_data" to="." method="_on_load_data_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/data_options/show_table" to="." method="_on_show_table_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/data_options/show_plot" to="." method="_on_show_plot_pressed"]
+[connection signal="pressed" from="UI_Controls/Toolbar/data_options/clear_data" to="." method="_on_clear_data_pressed"]
+[connection signal="pressed" from="UI_Controls/visualization_container/rules_container/graph/graph_options/add_node" to="." method="_on_add_node_pressed"]
+[connection signal="pressed" from="UI_Controls/visualization_container/rules_container/graph/graph_options/get_result" to="." method="_on_get_result_pressed"]
+[connection signal="pressed" from="UI_Controls/visualization_container/rules_container/graph/graph_options/save_graph" to="." method="_on_save_graph_pressed"]
+[connection signal="pressed" from="UI_Controls/visualization_container/rules_container/graph/graph_options/load_graph" to="." method="_on_load_graph_pressed"]
+[connection signal="pressed" from="UI_Controls/visualization_container/rules_container/graph/graph_options/clear_graph" to="." method="_on_clear_graph_pressed"]
+[connection signal="connection_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="copy_nodes_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_copy_nodes_request"]
+[connection signal="cut_nodes_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_cut_nodes_request"]
+[connection signal="delete_nodes_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_delete_nodes_request"]
+[connection signal="disconnection_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_disconnection_request"]
+[connection signal="duplicate_nodes_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_duplicate_nodes_request"]
+[connection signal="paste_nodes_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_paste_nodes_request"]
+[connection signal="popup_request" from="UI_Controls/visualization_container/rules_container/graph/GraphEdit" to="." method="_on_graph_edit_popup_request"]
+[connection signal="pressed" from="Data_Sources/add_data" to="." method="_on_add_data_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dofsa5thvq6ew"]
+
+[ext_resource type="Script" uid="uid://cy5jnjugtf3mo" path="res://scenes/data/subcategory.gd" id="1_7uipu"]
+
+[node name="Subcategory" type="HBoxContainer" node_paths=PackedStringArray("subcategory_name", "delete_subcategory")]
+script = ExtResource("1_7uipu")
+subcategory_name = NodePath("subcategory_name")
+delete_subcategory = NodePath("delete_subcategory")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "     "
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+text = "     "
+
+[node name="subcategory_name" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Subcategory"
+
+[node name="delete_subcategory" type="Button" parent="."]
+layout_mode = 2
+text = "x"
+
+[connection signal="text_changed" from="subcategory_name" to="." method="_on_subcategory_name_text_changed"]
+[connection signal="pressed" from="delete_subcategory" to="." method="_on_delete_subcategory_pressed"]

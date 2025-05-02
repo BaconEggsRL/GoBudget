@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhvipdi1hd0eo"]
+
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="1_8gm6n"]
+[ext_resource type="Script" uid="uid://bmbrw6v066avm" path="res://scenes/data/confirmation_popup.gd" id="2_0nwgl"]
+[ext_resource type="Texture2D" uid="uid://e24syhcal4ce" path="res://art/exit.png" id="2_7lah1"]
+
+[node name="ConfirmationPopup" type="PanelContainer" node_paths=PackedStringArray("confirm_btn", "abort_btn", "title_label")]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -105.5
+offset_right = 200.0
+offset_bottom = 105.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8gm6n")
+script = ExtResource("2_0nwgl")
+confirm_btn = NodePath("Content/VBoxContainer/submit_vbox/confirm")
+abort_btn = NodePath("Content/VBoxContainer/submit_vbox/abort")
+title_label = NodePath("WindowToolbar/Title")
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="confirmation_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="confirmation_tip" type="Label" parent="Content/VBoxContainer/confirmation_vbox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_8gm6n")
+text = "Are you sure?
+(This action cannot be undone.)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="submit_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+
+[node name="confirm" type="Button" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirm"
+
+[node name="abort" type="Button" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="WindowToolbar" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="Title" type="Label" parent="WindowToolbar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Action Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="WindowToolbar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+action_mode = 0
+icon = ExtResource("2_7lah1")
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/abort" to="." method="_on_abort_pressed"]
+[connection signal="pressed" from="WindowToolbar/Close" to="." method="_on_close_pressed"]

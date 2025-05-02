@@ -1,0 +1,153 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbdgesdrvjj3m"]
+
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="1_myj5a"]
+[ext_resource type="Script" uid="uid://c4j4sj25xvu5x" path="res://scenes/data/edit_categories_popup.gd" id="2_60in7"]
+[ext_resource type="Texture2D" uid="uid://e24syhcal4ce" path="res://art/exit.png" id="2_eunsi"]
+[ext_resource type="Texture2D" uid="uid://foyng5i7lbg3" path="res://art/maximize.png" id="3_60in7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60in7"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[node name="EditCategoriesPopup" type="PanelContainer" node_paths=PackedStringArray("maximize_btn", "confirm_btn", "abort_btn", "title_label", "cat_container", "scroll_container")]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -251.0
+offset_right = 200.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60in7")
+script = ExtResource("2_60in7")
+maximize_btn = NodePath("WindowToolbar/MarginContainer/HBoxContainer/Maximize")
+confirm_btn = NodePath("Content/VBoxContainer/submit_vbox/confirm_changes")
+abort_btn = NodePath("Content/VBoxContainer/submit_vbox/HBoxContainer2/cancel")
+title_label = NodePath("WindowToolbar/Title")
+cat_container = NodePath("Content/VBoxContainer/scroll_vbox/ScrollContainer/MarginContainer/cat_container")
+scroll_container = NodePath("Content/VBoxContainer/scroll_vbox/ScrollContainer")
+
+[node name="BG" type="PanelContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_myj5a")
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="scroll_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/VBoxContainer/scroll_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/VBoxContainer/scroll_vbox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="cat_container" type="VBoxContainer" parent="Content/VBoxContainer/scroll_vbox/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="submit_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+
+[node name="add_category" type="Button" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add Category"
+
+[node name="confirm_changes" type="Button" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirm Changes"
+
+[node name="HSeparator3" type="HSeparator" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+
+[node name="cancel" type="Button" parent="Content/VBoxContainer/submit_vbox/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="WindowToolbar" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="Title" type="Label" parent="WindowToolbar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Edit Categories"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowToolbar"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowToolbar/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="Maximize" type="Button" parent="WindowToolbar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+action_mode = 0
+icon = ExtResource("3_60in7")
+icon_alignment = 1
+
+[node name="Close" type="Button" parent="WindowToolbar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+action_mode = 0
+icon = ExtResource("2_eunsi")
+icon_alignment = 1
+
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/add_category" to="." method="_on_create_category_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/confirm_changes" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/HBoxContainer2/cancel" to="." method="_on_abort_pressed"]
+[connection signal="pressed" from="WindowToolbar/MarginContainer/HBoxContainer/Maximize" to="." method="_on_maximize_pressed"]
+[connection signal="pressed" from="WindowToolbar/MarginContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

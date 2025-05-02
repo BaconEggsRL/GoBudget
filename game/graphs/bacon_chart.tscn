@@ -1,0 +1,123 @@
+[gd_scene load_steps=3 format=3 uid="uid://fl6dl2m84rmh"]
+
+[ext_resource type="Script" uid="uid://lplqrchq6hmk" path="res://graphs/bacon_chart.gd" id="1_wosix"]
+[ext_resource type="Script" uid="uid://babnif3uqm2ff" path="res://graphs/chart.gd" id="1_yr54m"]
+
+[node name="BaconChart" type="Control" node_paths=PackedStringArray("chart_area")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wosix")
+chart_area = NodePath("GridContainer/chart_container/chart")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="top_left" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="spacer5" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="top_right" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="y_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "y_label"
+vertical_alignment = 1
+
+[node name="y_ticks_container" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="chart_container" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="bg" type="ColorRect" parent="GridContainer/chart_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.517184, 0.517184, 0.517184, 1)
+
+[node name="chart" type="Control" parent="GridContainer/chart_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yr54m")
+_show_grid = true
+bar_width_ratio = 0.85
+x_ticks = 8
+y_ticks = 8
+
+[node name="markers" type="Control" parent="GridContainer/chart_container/chart"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="legend_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "legend"
+vertical_alignment = 1
+
+[node name="spacer3" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="spacer2" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="x_ticks_container" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="bottom_left" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="spacer4" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="x_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "x_label"
+horizontal_alignment = 1
+
+[node name="bottom_right" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="resized" from="GridContainer/chart_container/chart" to="GridContainer/chart_container/chart" method="_on_resized"]

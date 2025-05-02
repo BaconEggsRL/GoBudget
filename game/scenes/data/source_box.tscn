@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvlfw2r8vjaxm"]
+
+[ext_resource type="Script" uid="uid://but06iq1nqq4y" path="res://scenes/data/source_box.gd" id="1_h4jj4"]
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="1_xm0lt"]
+[ext_resource type="Texture2D" uid="uid://c47ei138dloso" path="res://art/view.png" id="2_h4jj4"]
+[ext_resource type="Texture2D" uid="uid://bqebvcstijy15" path="res://art/edit.png" id="3_ds7ja"]
+[ext_resource type="Texture2D" uid="uid://scpo0eg7473x" path="res://art/delete.png" id="4_bav5v"]
+
+[node name="0" type="HBoxContainer" node_paths=PackedStringArray("name_label", "view_data", "edit_data", "delete_data", "active_checkbox")]
+alignment = 2
+script = ExtResource("1_h4jj4")
+name_label = NodePath("name_label")
+view_data = NodePath("view_data")
+edit_data = NodePath("edit_data")
+delete_data = NodePath("delete_data")
+active_checkbox = NodePath("active_checkbox")
+
+[node name="name_label" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("1_xm0lt")
+text = "<Data Source Name>"
+horizontal_alignment = 2
+
+[node name="view_data" type="Button" parent="."]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+tooltip_text = "Show Raw CSV and Transaction CSV data"
+theme = ExtResource("1_xm0lt")
+text = "View"
+icon = ExtResource("2_h4jj4")
+alignment = 0
+
+[node name="edit_data" type="Button" parent="."]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+tooltip_text = "Change name, column mapping, or upload new data"
+theme = ExtResource("1_xm0lt")
+text = "Edit"
+icon = ExtResource("3_ds7ja")
+alignment = 0
+
+[node name="delete_data" type="Button" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+tooltip_text = "Delete this data source and all associated rules"
+theme = ExtResource("1_xm0lt")
+text = "Delete"
+icon = ExtResource("4_bav5v")
+alignment = 0
+
+[node name="active_checkbox" type="CheckBox" parent="."]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_xm0lt")
+text = "Active"
+
+[connection signal="toggled" from="active_checkbox" to="." method="_on_active_checkbox_toggled"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjn5nf02dcoto"]
+
+[ext_resource type="PackedScene" uid="uid://8jgk0m4schvj" path="res://scenes/rules/save_popup_panel.tscn" id="1_pdr4g"]
+[ext_resource type="Script" uid="uid://ckrrkr83ihdi8" path="res://scenes/rules/save_popup_window.gd" id="1_v01ko"]
+
+[node name="save_popup_window" type="Window" node_paths=PackedStringArray("save_popup_panel")]
+title = "Update Node"
+initial_position = 2
+size = Vector2i(400, 212)
+keep_title_visible = true
+script = ExtResource("1_v01ko")
+save_popup_panel = NodePath("SavePopupPanel")
+
+[node name="SavePopupPanel" parent="." instance=ExtResource("1_pdr4g")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 400.0
+offset_bottom = 170.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

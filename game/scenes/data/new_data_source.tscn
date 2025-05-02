@@ -1,0 +1,317 @@
+[gd_scene load_steps=4 format=3 uid="uid://b03lf6hck6l0i"]
+
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="1_8vxxj"]
+[ext_resource type="Texture2D" uid="uid://e24syhcal4ce" path="res://art/exit.png" id="2_kfm70"]
+[ext_resource type="Script" uid="uid://d5r88vihnf61" path="res://scenes/data/new_data_source.gd" id="2_uk6ub"]
+
+[node name="DataSourcePopup" type="PanelContainer" node_paths=PackedStringArray("date", "description", "amount", "source_category", "flip_amount", "submit_btn", "enter_name", "choose_file_btn", "file_vbox", "filepath_label", "columns_vbox", "title_label")]
+custom_minimum_size = Vector2(400, 502)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -251.0
+offset_right = 200.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8vxxj")
+script = ExtResource("2_uk6ub")
+date = NodePath("Content/VBoxContainer/columns_vbox/columns/date/Date")
+description = NodePath("Content/VBoxContainer/columns_vbox/columns/description/Description")
+amount = NodePath("Content/VBoxContainer/columns_vbox/columns/amount/Amount")
+source_category = NodePath("Content/VBoxContainer/columns_vbox/columns/source_category/SourceCategory")
+flip_amount = NodePath("Content/VBoxContainer/amount_vbox/columns/amount/flip_amount")
+submit_btn = NodePath("Content/VBoxContainer/submit_vbox/submit")
+enter_name = NodePath("Content/VBoxContainer/file_vbox/name/enter_name")
+choose_file_btn = NodePath("Content/VBoxContainer/file_vbox/file/choose_file")
+file_vbox = NodePath("Content/VBoxContainer/file_vbox")
+filepath_label = NodePath("Content/VBoxContainer/file_vbox/path/filepath")
+columns_vbox = NodePath("Content/VBoxContainer/columns_vbox")
+title_label = NodePath("WindowToolbar/Title")
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="file_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="name" type="HBoxContainer" parent="Content/VBoxContainer/file_vbox"]
+layout_mode = 2
+
+[node name="name_tip" type="Label" parent="Content/VBoxContainer/file_vbox/name"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "Name: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="enter_name" type="LineEdit" parent="Content/VBoxContainer/file_vbox/name"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter Name"
+max_length = 25
+
+[node name="file" type="HBoxContainer" parent="Content/VBoxContainer/file_vbox"]
+layout_mode = 2
+
+[node name="file_tip" type="Label" parent="Content/VBoxContainer/file_vbox/file"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "File: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="choose_file" type="Button" parent="Content/VBoxContainer/file_vbox/file"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Choose File..."
+
+[node name="path" type="HBoxContainer" parent="Content/VBoxContainer/file_vbox"]
+layout_mode = 2
+
+[node name="selected_tip" type="Label" parent="Content/VBoxContainer/file_vbox/path"]
+custom_minimum_size = Vector2(80, 34)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "Path: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="filepath" type="RichTextLabel" parent="Content/VBoxContainer/file_vbox/path"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 2
+theme = ExtResource("1_8vxxj")
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="columns_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HSeparator" type="HSeparator" parent="Content/VBoxContainer/columns_vbox"]
+layout_mode = 2
+
+[node name="columns_tip" type="Label" parent="Content/VBoxContainer/columns_vbox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "Select Columns..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="columns" type="VBoxContainer" parent="Content/VBoxContainer/columns_vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="date" type="HBoxContainer" parent="Content/VBoxContainer/columns_vbox/columns"]
+layout_mode = 2
+
+[node name="date_tip" type="Label" parent="Content/VBoxContainer/columns_vbox/columns/date"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "Date: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Date" type="OptionButton" parent="Content/VBoxContainer/columns_vbox/columns/date"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 6
+popup/item_0/text = "Date"
+popup/item_0/id = 0
+popup/item_1/text = "Description"
+popup/item_1/id = 1
+popup/item_2/text = "Category"
+popup/item_2/id = 2
+popup/item_3/text = "Amount"
+popup/item_3/id = 3
+popup/item_4/text = "Split"
+popup/item_4/id = 4
+popup/item_5/text = "Tags"
+popup/item_5/id = 5
+
+[node name="description" type="HBoxContainer" parent="Content/VBoxContainer/columns_vbox/columns"]
+layout_mode = 2
+
+[node name="description_tip" type="Label" parent="Content/VBoxContainer/columns_vbox/columns/description"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "Description: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Description" type="OptionButton" parent="Content/VBoxContainer/columns_vbox/columns/description"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 1
+item_count = 6
+popup/item_0/text = "Date"
+popup/item_0/id = 0
+popup/item_1/text = "Description"
+popup/item_1/id = 1
+popup/item_2/text = "Category"
+popup/item_2/id = 2
+popup/item_3/text = "Amount"
+popup/item_3/id = 3
+popup/item_4/text = "Split"
+popup/item_4/id = 4
+popup/item_5/text = "Tags"
+popup/item_5/id = 5
+
+[node name="amount" type="HBoxContainer" parent="Content/VBoxContainer/columns_vbox/columns"]
+layout_mode = 2
+
+[node name="amount_tip" type="Label" parent="Content/VBoxContainer/columns_vbox/columns/amount"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "Amount: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Amount" type="OptionButton" parent="Content/VBoxContainer/columns_vbox/columns/amount"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 3
+item_count = 6
+popup/item_0/text = "Date"
+popup/item_0/id = 0
+popup/item_1/text = "Description"
+popup/item_1/id = 1
+popup/item_2/text = "Category"
+popup/item_2/id = 2
+popup/item_3/text = "Amount"
+popup/item_3/id = 3
+popup/item_4/text = "Split"
+popup/item_4/id = 4
+popup/item_5/text = "Tags"
+popup/item_5/id = 5
+
+[node name="source_category" type="HBoxContainer" parent="Content/VBoxContainer/columns_vbox/columns"]
+layout_mode = 2
+
+[node name="source_cat_tip" type="Label" parent="Content/VBoxContainer/columns_vbox/columns/source_category"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_8vxxj")
+text = "SourceCategory: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SourceCategory" type="OptionButton" parent="Content/VBoxContainer/columns_vbox/columns/source_category"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 2
+item_count = 6
+popup/item_0/text = "Date"
+popup/item_0/id = 0
+popup/item_1/text = "Description"
+popup/item_1/id = 1
+popup/item_2/text = "Category"
+popup/item_2/id = 2
+popup/item_3/text = "Amount"
+popup/item_3/id = 3
+popup/item_4/text = "Split"
+popup/item_4/id = 4
+popup/item_5/text = "Tags"
+popup/item_5/id = 5
+
+[node name="amount_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HSeparator" type="HSeparator" parent="Content/VBoxContainer/amount_vbox"]
+layout_mode = 2
+
+[node name="columns" type="VBoxContainer" parent="Content/VBoxContainer/amount_vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="amount" type="HBoxContainer" parent="Content/VBoxContainer/amount_vbox/columns"]
+layout_mode = 2
+
+[node name="amount_tip" type="Label" parent="Content/VBoxContainer/amount_vbox/columns/amount"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+tooltip_text = "Positive amounts become negative. Negative amounts become positive."
+mouse_filter = 0
+theme = ExtResource("1_8vxxj")
+text = "(?): "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="flip_amount" type="CheckBox" parent="Content/VBoxContainer/amount_vbox/columns/amount"]
+layout_mode = 2
+text = "Flip Amount"
+
+[node name="submit_vbox" type="VBoxContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+
+[node name="submit" type="Button" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Tells the user what is missing"
+disabled = true
+text = "Submit"
+
+[node name="cancel" type="Button" parent="Content/VBoxContainer/submit_vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="WindowToolbar" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="Title" type="Label" parent="WindowToolbar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Add New Data Source"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="WindowToolbar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+action_mode = 0
+icon = ExtResource("2_kfm70")
+flat = true
+icon_alignment = 1
+
+[connection signal="text_changed" from="Content/VBoxContainer/file_vbox/name/enter_name" to="." method="_on_enter_name_text_changed"]
+[connection signal="pressed" from="Content/VBoxContainer/file_vbox/file/choose_file" to="." method="_on_choose_file_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/submit_vbox/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="WindowToolbar/Close" to="." method="_on_close_pressed"]

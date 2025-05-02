@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://yumviucp3kpq"]
+
+[ext_resource type="Script" uid="uid://cndfogak33t8f" path="res://scenes/rules/right_click_popup.gd" id="1_8v53c"]
+
+[node name="right_click_popup" type="PopupMenu"]
+size = Vector2i(106, 192)
+visible = true
+unfocusable = true
+item_count = 7
+item_0/text = "Add Node"
+item_0/id = 0
+item_1/id = 1
+item_1/separator = true
+item_2/text = "Cut"
+item_2/id = 2
+item_3/text = "Copy"
+item_3/id = 3
+item_4/text = "Paste"
+item_4/id = 4
+item_5/text = "Delete"
+item_5/id = 5
+item_6/text = "Duplicate"
+item_6/id = 6
+script = ExtResource("1_8v53c")

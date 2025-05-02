@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://8jgk0m4schvj"]
+
+[ext_resource type="Theme" uid="uid://d26p00jqqx2n4" path="res://btn_theme.tres" id="1_2ymal"]
+[ext_resource type="Script" uid="uid://0pdmaau3hfna" path="res://scenes/rules/save_popup_panel.gd" id="1_r88xn"]
+[ext_resource type="Texture2D" uid="uid://e24syhcal4ce" path="res://art/exit.png" id="3_jy0vs"]
+
+[node name="SavePopupPanel" type="PanelContainer" node_paths=PackedStringArray("title_line", "color_frame", "color_selected")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -106.0
+offset_right = 200.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2ymal")
+script = ExtResource("1_r88xn")
+title_line = NodePath("MarginContainer/VBoxContainer/Title/TitleLine")
+color_frame = NodePath("MarginContainer/VBoxContainer/ColorFrame/ColorFrameButton")
+color_selected = NodePath("MarginContainer/VBoxContainer/ColorSelected/ColorSelectedButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Save" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Save"
+
+[node name="Title" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/Title"]
+layout_mode = 2
+text = "Title: "
+
+[node name="TitleLine" type="LineEdit" parent="MarginContainer/VBoxContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Title"
+
+[node name="ColorFrame" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ColorFrameLabel" type="Label" parent="MarginContainer/VBoxContainer/ColorFrame"]
+layout_mode = 2
+text = "Color frame:     "
+
+[node name="ColorFrameButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/ColorFrame"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+edit_alpha = false
+
+[node name="ColorSelected" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ColorSelectedLabel" type="Label" parent="MarginContainer/VBoxContainer/ColorSelected"]
+layout_mode = 2
+text = "Color selected: "
+
+[node name="ColorSelectedButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/ColorSelected"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+edit_alpha = false
+
+[node name="Toolbar" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="Title" type="Label" parent="Toolbar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Update Node"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Toolbar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+action_mode = 0
+icon = ExtResource("3_jy0vs")
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="color_changed" from="MarginContainer/VBoxContainer/ColorFrame/ColorFrameButton" to="." method="_on_color_frame_button_color_changed"]
+[connection signal="color_changed" from="MarginContainer/VBoxContainer/ColorSelected/ColorSelectedButton" to="." method="_on_color_selected_button_color_changed"]
+[connection signal="pressed" from="Toolbar/Close" to="." method="_on_close_pressed"]
